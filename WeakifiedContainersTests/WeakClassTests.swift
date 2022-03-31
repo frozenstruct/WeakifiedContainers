@@ -20,14 +20,16 @@ final class WeakClassTests: XCTestCase {
 		// Arrange
 
 		var weakPointersArray = [WeakifiedClass<Foo>]()
+		var arrayOfFoos = makeArrayOfFoos()
 
 		// Act
 
-		for i in 0...10 {
-			let foo = Foo(i)
-			let container = WeakifiedClass<Foo>(withRefType: foo)
-			weakPointersArray.append(container)
-		}
+		arrayOfFoos?.forEach({
+			let a = WeakifiedClass<Foo>(withRefType: $0)
+			weakPointersArray.append(a)
+		})
+
+		arrayOfFoos = nil
 
 		// Assert
 
@@ -41,9 +43,7 @@ final class WeakClassTests: XCTestCase {
 		// Arrange
 
 		let wrapper = WeakifiedClass<Foo>.init(withRefType: Foo(0))
-
 		var objectRef = wrapper.object
-
 		weak var objectWeakRef = objectRef
 
 		// Act
@@ -53,5 +53,12 @@ final class WeakClassTests: XCTestCase {
 		// Assert
 
 		XCTAssertNil(objectWeakRef)
+	}
+}
+
+extension WeakClassTests {
+
+	func makeArrayOfFoos() -> [Foo]? {
+		(0..<10).map { Foo($0) }
 	}
 }
