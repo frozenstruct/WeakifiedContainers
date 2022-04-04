@@ -72,12 +72,3 @@ final class WeakTableTests: XCTestCase {
 		XCTAssertEqual(sut.allObjects.count, 0)
 	}
 }
-
-// MARK: - Convenience
-
-extension WeakTableTests {
-
-	func makeObjectArray() -> [Foo]? {
-		(0..<10).map (Foo.init)
-	}
-}
