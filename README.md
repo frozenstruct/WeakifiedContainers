@@ -9,7 +9,7 @@ Test different wrappers holding weak references to reftype objects
 **Hypothesis Formal Proof Method:** \
 Unit-Testing via `XCTest` (passing, see Bitrise)
 
-**Test Subjects:** \
+**Test Subjects:** 
 - `class` type wrapper (see `WeakIfied.swift`)
 - `NSHashTable` (see `NSHashTableWeakTests.swift`)
 - `@propertyWrapper` (see `PropertyWrapperWeakContainer.swift`)
